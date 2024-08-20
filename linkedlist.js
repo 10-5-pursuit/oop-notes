@@ -54,6 +54,64 @@ class LinkedList {
             currentNode.next = newNode
         }
     }
+
+    search(data){
+        // method that returns to us the node that has the piece of data that matches the param
+
+        let currentNode = this.head
+        
+        // if there is no head, return null
+        if(!currentNode){
+            return null
+        }
+        // go through all of the nodes in the list, until we either find the node whose data matches the param or when we've gone through the entire list
+        while(currentNode){
+            // check if the currentNode's data is equal to data from the param
+            if(currentNode.data === data){
+                return currentNode
+            } else {
+                currentNode = currentNode.next
+            }
+        }
+        return null
+    }
+
+    clear(){
+        this.head = null
+    }
+
+    getLast(){
+        let currentNode = this.head
+        if(!currentNode){
+            return null
+        }
+        // while there is a node after the currentNode then reassign currentNode to be the next node
+        while(currentNode.next){
+            currentNode = currentNode.next
+        }
+        return currentNode
+    }
+
+    delete(data){
+        // take out a node with a specific value(data).
+        // We should make the currentNode's previousNode point to the currentNode's next node
+        let prevNode = this.head
+        let currentNode = this.head
+
+        // if this.head's data === data then reassign this.head to be the next Node
+        if(currentNode.data === data){
+            this.head = currentNode.next
+        }
+
+        // while the currentNode's data isn't equal to the data we are looking for:
+        while(currentNode.data !== data){
+            // reassign prevNode and currentNode to look at their next nodes respectively
+            prevNode = currentNode
+            currentNode = currentNode.next
+        }
+        // reassign prevNode's next to look at the node AFTER the currentNode
+        prevNode.next = currentNode.next
+    }
 }
 
 
@@ -105,7 +163,19 @@ const list1 = new LinkedList(node)
 
 
 list1.insertAtBack("February")
-list1.insertAtBack("December")
+list1.insertAtBack("March")
 
-console.log(inspect(list1, { depth: null, colors: true }))
+// console.log(inspect(list1, { depth: null, colors: true }))
 
+
+// Testing out searching for a specific piece of data
+// console.log(list1.search("January"))
+
+// list1.clear()
+list1.insertAtBack("April")
+// console.log(list1)
+// console.log( list1.getLast() )
+
+
+list1.delete('February')
+console.log(list1)
