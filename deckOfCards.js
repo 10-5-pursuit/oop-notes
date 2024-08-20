@@ -72,3 +72,9 @@ const casinoDeck = new Deck()
 casinoDeck.shuffle()
 console.log(casinoDeck)
 
+
+Deck.prototype.sayHello = () => {
+    console.log('hello there')
+}
+
+casinoDeck.sayHello()
