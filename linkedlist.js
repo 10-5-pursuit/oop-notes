@@ -161,7 +161,7 @@ const list1 = new LinkedList(node)
 // list1.insertAtHead("February")
 // list1.insertAtHead("March")
 
-
+// Adding to the back of the list
 list1.insertAtBack("February")
 list1.insertAtBack("March")
 
