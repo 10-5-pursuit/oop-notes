@@ -65,6 +65,37 @@ class BinarySearchTree {
         }
         return null
     }
+
+    insert2(value){
+        const newNode = new BinaryTreeNode(value)
+        // if there is no root node, assign the newNode to be the root
+        if(!this.root){
+            this.root = newNode
+        } else {
+            this.recursiveInsert(this.root, newNode)
+        }
+    }
+
+    recursiveInsert(node, newNode){
+        // compare node's data to newNode's data
+        if(newNode.data < node.data){
+            // if there is no node.left, assign newNode to be node.left
+            if(!node.left){
+                node.left = newNode
+            } else {
+                // Keep traversing to find a home for the newNode
+                this.recursiveInsert(node.left, newNode)
+            }
+        } else {
+            // if there is no node.right, assign newNode to be node.right
+            if(!node.right){
+                node.right = newNode
+            } else {
+                // Keep traversing to find a home for the newNode
+                this.recursiveInsert(node.right, newNode)
+            }
+        }
+    }
 }
 
 const firstTreeNode = new BinaryTreeNode(10)
@@ -74,15 +105,17 @@ const bst = new BinarySearchTree(firstTreeNode)
 
 bst.insert(5)
 bst.insert(12)
-bst.insert(7)
-bst.insert(18)
+// bst.insert(7)
+// bst.insert(18)
 // console.log(bst)
 
 
 const { inspect } = require('util')
 
-// console.log( inspect(bst, { "depth": null, "colors": true }) )
 
-console.log( bst.search(7) )
-console.log( bst.search(6) )
+// console.log( bst.search(7) )
+// console.log( bst.search(6) )
 
+bst.insert2(7)
+// console.log(bst)
+console.log( inspect(bst, { "depth": null, "colors": true }) )
